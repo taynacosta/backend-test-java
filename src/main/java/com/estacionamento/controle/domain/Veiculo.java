@@ -2,10 +2,15 @@ package com.estacionamento.controle.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Veiculo implements Serializable{
@@ -20,6 +25,9 @@ public class Veiculo implements Serializable{
 	private String cor;
 	private String placa;
 	private String tipo;
+	
+	@ManyToOne(cascade=CascadeType.ALL) @JoinColumn(name = "VagasEstacionamento_id") //@JsonIgnore
+	private VagasEstacionamento vaga;
 	
 	public Veiculo() {}
 
@@ -59,4 +67,9 @@ public class Veiculo implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	public VagasEstacionamento getVaga() {
+		return vaga;
+	}
+	
 }

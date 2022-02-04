@@ -1,7 +1,6 @@
 package com.estacionamento.controle.resource;
 
 import java.net.URI;
-import java.util.List;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;

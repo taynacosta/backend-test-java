@@ -2,11 +2,15 @@ package com.estacionamento.controle.domain.dto;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
+import com.estacionamento.controle.domain.VagasEstacionamento;
 import com.estacionamento.controle.domain.Veiculo;
 
 @Entity
@@ -22,6 +26,9 @@ public class VeiculoDto implements Serializable {
 	private String cor;
 	private String placa;
 	private String tipo;
+	
+	@ManyToOne(cascade=CascadeType.ALL) @JoinColumn(name = "VagasEstacionamento_id")
+	private VagasEstacionamento vaga;
 	
 	public VeiculoDto() {}
 
@@ -76,6 +83,14 @@ public class VeiculoDto implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public VagasEstacionamento getVaga() {
+		return vaga;
+	}
+
+	public void setVaga(VagasEstacionamento vaga) {
+		this.vaga = vaga;
 	}
 	
 }
